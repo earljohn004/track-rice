@@ -33,7 +33,7 @@ import { InventoryCreate, InventoryList } from "./pages/inventory";
 
 function App() {
   return (
-    (<BrowserRouter>
+    <BrowserRouter>
       <RefineKbarProvider>
         <ColorModeContextProvider>
           <CssBaseline />
@@ -44,28 +44,22 @@ function App() {
                 dataProvider={firestoreDatabase.getDataProvider()}
                 routerProvider={routerBindings}
                 legacyAuthProvider={firebaseAuth.getAuthProvider()}
-                resources={[{
-                  name: "categories",
-                  list: "/categories",
-                  create: "/categories/create",
-                  edit: "/categories/edit/:id",
-                  show: "/categories/show/:id",
-                  meta: {
-                    canDelete: true,
+                resources={[
+                  {
+                    name: "inventory",
+                    list: "/inventory",
+                    create: "/inventory/create",
+                    edit: "/inventory/edit/:id",
+                    show: "/inventory/show/:id",
                   },
-                }, {
-                  name: "inventory",
-                  list: "/inventory",
-                  create: "/inventory/create",
-                  edit: "/inventory/edit/:id",
-                  show: "/inventory/show/:id",
-                }, {
-                  name: "sales",
-                  list: "/sales",
-                  create: "/sales/create",
-                  edit: "/sales/edit/:id",
-                  show: "/sales/show/:id"
-                }]}
+                  {
+                    name: "sales",
+                    list: "/sales",
+                    create: "/sales/create",
+                    edit: "/sales/edit/:id",
+                    show: "/sales/show/:id",
+                  },
+                ]}
                 options={{
                   syncWithLocation: true,
                   warnWhenUnsavedChanges: true,
@@ -92,7 +86,7 @@ function App() {
                     />
                     <Route path="/inventory">
                       <Route index element={<InventoryList />} />
-                      <Route path="create" element={<InventoryCreate/>} />
+                      <Route path="create" element={<InventoryCreate />} />
                       {/* <Route index element={<InventoryCreate/>} />
                       <Route path="list" element={<InventoryList />} /> */}
                       <Route path="edit/:id" element={<></>} />
@@ -133,7 +127,7 @@ function App() {
           </RefineSnackbarProvider>
         </ColorModeContextProvider>
       </RefineKbarProvider>
-    </BrowserRouter>)
+    </BrowserRouter>
   );
 }
 
