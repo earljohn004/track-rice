@@ -29,7 +29,12 @@ import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { firebaseAuth, firestoreDatabase } from "./config/firebaseConfig";
-import { InventoryCreate, InventoryList } from "./pages/inventory";
+import {
+  InventoryCreate,
+  InventoryList,
+  InventoryShow,
+} from "./pages/inventory";
+import { SalesCreate } from "./pages/sales";
 
 function App() {
   return (
@@ -90,7 +95,15 @@ function App() {
                       {/* <Route index element={<InventoryCreate/>} />
                       <Route path="list" element={<InventoryList />} /> */}
                       <Route path="edit/:id" element={<></>} />
-                      <Route path="show/:id" element={<></>} />
+                      <Route path="show/:id" element={<InventoryShow />} />
+                    </Route>
+                    <Route path="/sales">
+                      <Route index element={<SalesCreate />} />
+                      {/* <Route path="create" element={<InventoryCreate />} /> */}
+                      {/* <Route index element={<InventoryCreate/>} />
+                      <Route path="list" element={<InventoryList />} /> */}
+                      {/* <Route path="edit/:id" element={<></>} />
+                      <Route path="show/:id" element={<InventoryShow />} /> */}
                     </Route>
                     <Route path="/categories">
                       <Route index element={<CategoryList />} />
