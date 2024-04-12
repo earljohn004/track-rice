@@ -71,7 +71,11 @@ export const InventoryList = () => {
         headerName: "Created",
         minWidth: 250,
         renderCell: function render({ value }) {
-          return <DateField value={value} />;
+          return (
+            <>
+              <DateField value={new Date(value)} />
+            </>
+          );
         },
       },
       {

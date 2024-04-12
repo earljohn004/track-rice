@@ -26,6 +26,7 @@ export const SalesCreate = () => {
     setValue("totalPrice", totalPrice);
     setValue("inventory.retailPrice", retailPrice);
     setValue("inventory.item", option);
+    setValue("createdAt", Date.now())
   }, [totalPrice, setValue, setRetailPrice, retailPrice, option]);
 
   return (
