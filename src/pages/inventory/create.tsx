@@ -40,7 +40,7 @@ export const InventoryCreate = () => {
       setRetailPriceKg(parseInt(retailPriceInKg.toFixed(1)));
       setMarkupPrice(markupPrice);
       setSackContents(parseInt(sackContentsRef.current.value));
-      setValue("createdAt", Date.now())
+      setValue("createdAt", Date.now());
     }
   };
 
@@ -112,7 +112,7 @@ export const InventoryCreate = () => {
           label={"Retail Price (kg)"}
           name="retailPriceKg"
           value={retailPriceKg}
-          InputProps={{readOnly: true}}
+          InputProps={{ readOnly: true }}
         />
         <TextField
           {...register("retailPriceSack")}
@@ -123,7 +123,7 @@ export const InventoryCreate = () => {
           label={"Retail Price (sack)"}
           name="retailPriceSack"
           value={retailPriceSack}
-          InputProps={{readOnly: true}}
+          InputProps={{ readOnly: true }}
         />
       </Box>
     </Create>

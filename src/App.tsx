@@ -19,12 +19,6 @@ import routerBindings, {
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
@@ -92,20 +86,12 @@ function App() {
                     <Route path="/inventory">
                       <Route index element={<InventoryList />} />
                       <Route path="create" element={<InventoryCreate />} />
-                      {/* <Route index element={<InventoryCreate/>} />
-                      <Route path="list" element={<InventoryList />} /> */}
                       <Route path="edit/:id" element={<></>} />
                       <Route path="show/:id" element={<InventoryShow />} />
                     </Route>
                     <Route path="/sales">
                       <Route index element={<SalesList />} />
                       <Route path="create" element={<SalesCreate />} />
-                    </Route>
-                    <Route path="/categories">
-                      <Route index element={<CategoryList />} />
-                      <Route path="create" element={<CategoryCreate />} />
-                      <Route path="edit/:id" element={<CategoryEdit />} />
-                      <Route path="show/:id" element={<CategoryShow />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
