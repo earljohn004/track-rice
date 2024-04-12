@@ -9,8 +9,8 @@ export const SalesCreate = () => {
     saveButtonProps,
     refineCore: { formLoading },
     register,
+    setValue,
     control,
-    formState: { errors },
   } = useForm({});
 
   const { autocompleteProps: inventoryItems } = useAutocomplete({
@@ -20,6 +20,13 @@ export const SalesCreate = () => {
 
   const [retailPrice, setRetailPrice] = useState<number>(0);
   const [totalPrice, setTotalPrice] = useState<number>(0);
+  const [option, setOption] = useState<string>("");
+
+  useEffect(() => {
+    setValue("totalPrice", totalPrice);
+    setValue("inventory.retailPrice", retailPrice);
+    setValue("inventory.item", option);
+  }, [totalPrice, setValue, setRetailPrice, retailPrice, option]);
 
   return (
     <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
@@ -30,7 +37,7 @@ export const SalesCreate = () => {
       >
         <Controller
           control={control}
-          name={"inventory.item"}
+          name={"inventory.id"}
           rules={{ required: "This field is required" }}
           // eslint-disable-next-line
           defaultValue={null as any}
@@ -40,6 +47,8 @@ export const SalesCreate = () => {
               {...field}
               onChange={(_, value) => {
                 field.onChange(value.id);
+                console.log(value);
+                setOption(value.item);
                 setTotalPrice(0);
                 setRetailPrice(value?.retailPriceKg);
                 if (quantityRef?.current) quantityRef.current.value = "";
@@ -87,6 +96,7 @@ export const SalesCreate = () => {
           InputProps={{ readOnly: true }}
         />
         <TextField
+          {...register("quantity")}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}

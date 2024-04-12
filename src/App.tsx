@@ -34,7 +34,7 @@ import {
   InventoryList,
   InventoryShow,
 } from "./pages/inventory";
-import { SalesCreate } from "./pages/sales";
+import { SalesCreate, SalesList } from "./pages/sales";
 
 function App() {
   return (
@@ -98,8 +98,8 @@ function App() {
                       <Route path="show/:id" element={<InventoryShow />} />
                     </Route>
                     <Route path="/sales">
-                      <Route index element={<SalesCreate />} />
-                      {/* <Route path="create" element={<InventoryCreate />} /> */}
+                      <Route index element={<SalesList />} />
+                      <Route path="create" element={<SalesCreate />} />
                       {/* <Route index element={<InventoryCreate/>} />
                       <Route path="list" element={<InventoryList />} /> */}
                       {/* <Route path="edit/:id" element={<></>} />
