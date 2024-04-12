@@ -35,7 +35,7 @@ export const InventoryList = () => {
         field: "item",
         flex: 1,
         headerName: "Item",
-        minWidth: 150,
+        minWidth: 130,
       },
       {
         field: "retailPriceKg",

@@ -51,18 +51,18 @@ function App() {
                 legacyAuthProvider={firebaseAuth.getAuthProvider()}
                 resources={[
                   {
-                    name: "inventory",
-                    list: "/inventory",
-                    create: "/inventory/create",
-                    edit: "/inventory/edit/:id",
-                    show: "/inventory/show/:id",
-                  },
-                  {
                     name: "sales",
                     list: "/sales",
                     create: "/sales/create",
                     edit: "/sales/edit/:id",
                     show: "/sales/show/:id",
+                  },
+                  {
+                    name: "inventory",
+                    list: "/inventory",
+                    create: "/inventory/create",
+                    edit: "/inventory/edit/:id",
+                    show: "/inventory/show/:id",
                   },
                 ]}
                 options={{
