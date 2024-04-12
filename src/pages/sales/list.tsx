@@ -14,14 +14,13 @@ export const SalesList = () => {
         flex: 1,
         headerName: "Item",
         valueGetter: ({ row }) => row.inventory.item,
-        minWidth: 150,
+        minWidth: 120,
       },
       {
         field: "quantity",
-        flex: 1,
-        headerName: "Quantity",
+        headerName: "Qty",
         type: "number",
-        minWidth: 140,
+        minWidth: 120,
       },
       {
         field: "totalPrice",
