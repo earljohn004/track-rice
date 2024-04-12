@@ -100,10 +100,6 @@ function App() {
                     <Route path="/sales">
                       <Route index element={<SalesList />} />
                       <Route path="create" element={<SalesCreate />} />
-                      {/* <Route index element={<InventoryCreate/>} />
-                      <Route path="list" element={<InventoryList />} /> */}
-                      {/* <Route path="edit/:id" element={<></>} />
-                      <Route path="show/:id" element={<InventoryShow />} /> */}
                     </Route>
                     <Route path="/categories">
                       <Route index element={<CategoryList />} />
