@@ -6,7 +6,6 @@ export const CategoryEdit = () => {
   const {
     saveButtonProps,
     register,
-    formState: { errors },
   } = useForm({});
 
   return (
@@ -20,8 +19,6 @@ export const CategoryEdit = () => {
           {...register("title", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.title}
-          helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}

@@ -9,7 +9,6 @@ export const BlogPostCreate = () => {
     refineCore: { formLoading },
     register,
     control,
-    formState: { errors },
   } = useForm({});
 
   const { autocompleteProps: categoryAutocompleteProps } = useAutocomplete({
@@ -27,8 +26,6 @@ export const BlogPostCreate = () => {
           {...register("title", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.title}
-          helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
@@ -40,8 +37,6 @@ export const BlogPostCreate = () => {
           {...register("content", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.content}
-          helperText={(errors as any)?.content?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
@@ -88,8 +83,6 @@ export const BlogPostCreate = () => {
                   label={"Category"}
                   margin="normal"
                   variant="outlined"
-                  error={!!(errors as any)?.category?.id}
-                  helperText={(errors as any)?.category?.id?.message}
                   required
                 />
               )}

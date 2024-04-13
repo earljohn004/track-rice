@@ -1,15 +1,14 @@
-import { Autocomplete, Box, MenuItem, Select, TextField } from "@mui/material";
-import { Create, useAutocomplete } from "@refinedev/mui";
+import { Box, TextField } from "@mui/material";
+import { Create } from "@refinedev/mui";
 import { useForm } from "@refinedev/react-hook-form";
 import { useRef, useState } from "react";
-import { Controller } from "react-hook-form";
 
 export const InventoryCreate = () => {
   const {
     saveButtonProps,
     refineCore: { formLoading },
     register,
-    formState: { errors },
+    setValue,
   } = useForm({});
 
   const [retailPriceKg, setRetailPriceKg] = useState<number>(123);
@@ -41,6 +40,7 @@ export const InventoryCreate = () => {
       setRetailPriceKg(parseInt(retailPriceInKg.toFixed(1)));
       setMarkupPrice(markupPrice);
       setSackContents(parseInt(sackContentsRef.current.value));
+      setValue("createdAt", Date.now());
     }
   };
 
@@ -55,8 +55,6 @@ export const InventoryCreate = () => {
           {...register("item", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.title}
-          helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
@@ -81,8 +79,6 @@ export const InventoryCreate = () => {
           {...register("markupPrice", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.title}
-          helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
@@ -97,8 +93,6 @@ export const InventoryCreate = () => {
           {...register("sackContents", {
             required: "This field is required",
           })}
-          error={!!(errors as any)?.title}
-          helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
@@ -111,8 +105,6 @@ export const InventoryCreate = () => {
         />
         <TextField
           {...register("retailPriceKg")}
-          error={!!(errors as any)?.title}
-          helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
@@ -120,12 +112,10 @@ export const InventoryCreate = () => {
           label={"Retail Price (kg)"}
           name="retailPriceKg"
           value={retailPriceKg}
-          InputProps={{readOnly: true}}
+          InputProps={{ readOnly: true }}
         />
         <TextField
           {...register("retailPriceSack")}
-          error={!!(errors as any)?.title}
-          helperText={(errors as any)?.title?.message}
           margin="normal"
           fullWidth
           InputLabelProps={{ shrink: true }}
@@ -133,7 +123,7 @@ export const InventoryCreate = () => {
           label={"Retail Price (sack)"}
           name="retailPriceSack"
           value={retailPriceSack}
-          InputProps={{readOnly: true}}
+          InputProps={{ readOnly: true }}
         />
       </Box>
     </Create>

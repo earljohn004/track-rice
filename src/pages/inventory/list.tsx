@@ -1,11 +1,9 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { useMany } from "@refinedev/core";
 import {
   DateField,
   DeleteButton,
   EditButton,
   List,
-  MarkdownField,
   ShowButton,
   useDataGrid,
 } from "@refinedev/mui";
@@ -16,60 +14,68 @@ export const InventoryList = () => {
     syncWithLocation: true,
   });
 
-  // const { data: categoryData, isLoading: categoryIsLoading } = useMany({
-  //   resource: "categories",
-  //   ids:
-  //     dataGridProps?.rows
-  //       ?.map((item: any) => item?.category?.id)
-  //       .filter(Boolean) ?? [],
-  //   queryOptions: {
-  //     enabled: !!dataGridProps?.rows,
-  //   },
-  // });
-
   const columns = React.useMemo<GridColDef[]>(
     () => [
+      {
+        field: "view",
+        headerName: "View",
+        sortable: false,
+        renderCell: function render({ row }) {
+          return (
+            <>
+              <ShowButton hideText recordItemId={row.id} />
+            </>
+          );
+        },
+        align: "center",
+        headerAlign: "center",
+        minWidth: 5,
+      },
       {
         field: "item",
         flex: 1,
         headerName: "Item",
-        minWidth: 200,
+        minWidth: 130,
       },
       {
         field: "retailPriceKg",
         flex: 1,
         headerName: "Retail Price (kg)",
         type: "number",
-        minWidth: 200,
+        minWidth: 140,
       },
       {
         field: "retailPriceSack",
         flex: 1,
         headerName: "Retail Price (sack)",
         type: "number",
-        minWidth: 200,
+        minWidth: 140,
       },
       {
         field: "wholesalePrice",
         flex: 1,
         headerName: "Wholesale Price",
         type: "number",
-        minWidth: 200,
+        minWidth: 140,
       },
       {
         field: "markupPrice",
         flex: 1,
         headerName: "MarkUp Price",
         type: "number",
-        minWidth: 200,
+        minWidth: 150,
       },
       {
         field: "createdAt",
         flex: 1,
-        headerName: "Created at",
+        headerName: "Created",
         minWidth: 250,
         renderCell: function render({ value }) {
-          return <DateField value={value} />;
+          return (
+            <>
+              <DateField value={new Date(value)} />
+            </>
+          );
         },
       },
       {
@@ -80,7 +86,6 @@ export const InventoryList = () => {
           return (
             <>
               <EditButton hideText recordItemId={row.id} />
-              <ShowButton hideText recordItemId={row.id} />
               <DeleteButton hideText recordItemId={row.id} />
             </>
           );

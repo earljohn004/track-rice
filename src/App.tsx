@@ -19,17 +19,16 @@ import routerBindings, {
 import { BrowserRouter, Outlet, Route, Routes } from "react-router-dom";
 import { Header } from "./components/header";
 import { ColorModeContextProvider } from "./contexts/color-mode";
-import {
-  CategoryCreate,
-  CategoryEdit,
-  CategoryList,
-  CategoryShow,
-} from "./pages/categories";
 import { ForgotPassword } from "./pages/forgotPassword";
 import { Login } from "./pages/login";
 import { Register } from "./pages/register";
 import { firebaseAuth, firestoreDatabase } from "./config/firebaseConfig";
-import { InventoryCreate, InventoryList } from "./pages/inventory";
+import {
+  InventoryCreate,
+  InventoryList,
+  InventoryShow,
+} from "./pages/inventory";
+import { SalesCreate, SalesList } from "./pages/sales";
 
 function App() {
   return (
@@ -46,18 +45,18 @@ function App() {
                 legacyAuthProvider={firebaseAuth.getAuthProvider()}
                 resources={[
                   {
-                    name: "inventory",
-                    list: "/inventory",
-                    create: "/inventory/create",
-                    edit: "/inventory/edit/:id",
-                    show: "/inventory/show/:id",
-                  },
-                  {
                     name: "sales",
                     list: "/sales",
                     create: "/sales/create",
                     edit: "/sales/edit/:id",
                     show: "/sales/show/:id",
+                  },
+                  {
+                    name: "inventory",
+                    list: "/inventory",
+                    create: "/inventory/create",
+                    edit: "/inventory/edit/:id",
+                    show: "/inventory/show/:id",
                   },
                 ]}
                 options={{
@@ -87,16 +86,12 @@ function App() {
                     <Route path="/inventory">
                       <Route index element={<InventoryList />} />
                       <Route path="create" element={<InventoryCreate />} />
-                      {/* <Route index element={<InventoryCreate/>} />
-                      <Route path="list" element={<InventoryList />} /> */}
                       <Route path="edit/:id" element={<></>} />
-                      <Route path="show/:id" element={<></>} />
+                      <Route path="show/:id" element={<InventoryShow />} />
                     </Route>
-                    <Route path="/categories">
-                      <Route index element={<CategoryList />} />
-                      <Route path="create" element={<CategoryCreate />} />
-                      <Route path="edit/:id" element={<CategoryEdit />} />
-                      <Route path="show/:id" element={<CategoryShow />} />
+                    <Route path="/sales">
+                      <Route index element={<SalesList />} />
+                      <Route path="create" element={<SalesCreate />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
