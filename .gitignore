@@ -24,7 +24,14 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
+# Firebase related config
 .firebaserc
 .firebase/
 firebase.json
+firestore.indexes.json
+firestore.rules
 hosting.*
+*-debug.log
+
+# Firebase functions
+track-functions/venv
