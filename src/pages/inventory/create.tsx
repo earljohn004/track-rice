@@ -2,6 +2,7 @@ import { Box, TextField } from "@mui/material";
 import { Create } from "@refinedev/mui";
 import { useForm } from "@refinedev/react-hook-form";
 import { useRef, useState } from "react";
+import { getFormattedDate } from "../../utils/dateUtils";
 
 export const InventoryCreate = () => {
   const {
@@ -40,7 +41,9 @@ export const InventoryCreate = () => {
       setRetailPriceKg(parseInt(retailPriceInKg.toFixed(1)));
       setMarkupPrice(markupPrice);
       setSackContents(parseInt(sackContentsRef.current.value));
-      setValue("createdAt", Date.now());
+
+      setValue("timestamp", Date.now());
+      setValue("createdAt", getFormattedDate())
     }
   };
 
