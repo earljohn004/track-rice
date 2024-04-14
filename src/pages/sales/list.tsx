@@ -1,23 +1,10 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
-import { List, useDataGrid } from "@refinedev/mui";
+import { DateField, List, useDataGrid } from "@refinedev/mui";
 import { useMemo } from "react";
-import { getFormattedDate } from "../../utils/dateUtils";
 
 export const SalesList = () => {
   const { dataGridProps } = useDataGrid({
     syncWithLocation: true,
-    pagination: {
-      mode: "off",
-    },
-    filters: {
-      initial: [
-        {
-          field: "createdAt",
-          operator: "eq",
-          value: getFormattedDate(),
-        },
-      ],
-    },
   });
 
   const columns = useMemo<GridColDef[]>(
@@ -47,6 +34,13 @@ export const SalesList = () => {
         flex: 1,
         headerName: "Created",
         minWidth: 250,
+        renderCell: function render({ value }) {
+          return (
+            <>
+              <DateField value={new Date(value)} />
+            </>
+          );
+        },
       },
     ],
     []
@@ -54,7 +48,7 @@ export const SalesList = () => {
 
   return (
     <List>
-      <DataGrid hideFooter {...dataGridProps} columns={columns} autoHeight />
+      <DataGrid {...dataGridProps} columns={columns} autoHeight />
     </List>
   );
 };

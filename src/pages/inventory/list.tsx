@@ -1,5 +1,6 @@
 import { DataGrid, GridColDef } from "@mui/x-data-grid";
 import {
+  DateField,
   DeleteButton,
   EditButton,
   List,
@@ -11,9 +12,6 @@ import React from "react";
 export const InventoryList = () => {
   const { dataGridProps } = useDataGrid({
     syncWithLocation: true,
-    pagination: {
-      mode: "off"
-    }
   });
 
   const columns = React.useMemo<GridColDef[]>(
@@ -72,6 +70,13 @@ export const InventoryList = () => {
         flex: 1,
         headerName: "Created",
         minWidth: 250,
+        renderCell: function render({ value }) {
+          return (
+            <>
+              <DateField value={new Date(value)} />
+            </>
+          );
+        },
       },
       {
         field: "actions",

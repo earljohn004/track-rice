@@ -1,20 +1,14 @@
-import {
-  Autocomplete,
-  Box,
-  Button,
-  TextField,
-  Typography,
-} from "@mui/material";
+import { Autocomplete, Box, TextField, Typography } from "@mui/material";
 import { Create, useAutocomplete } from "@refinedev/mui";
 import { useForm } from "@refinedev/react-hook-form";
 import { useEffect, useRef, useState } from "react";
 import { Controller } from "react-hook-form";
-import { getFormattedDate } from "../../utils/dateUtils";
 
 export const SalesCreate = () => {
   const {
     saveButtonProps,
     refineCore: { formLoading },
+    register,
     setValue,
     control,
   } = useForm({});
@@ -28,24 +22,12 @@ export const SalesCreate = () => {
   const [totalPrice, setTotalPrice] = useState<number>(0);
   const [option, setOption] = useState<string>("");
 
-  const quickButtons = ["1/4", "1/2", "3/4", "1", "5", "10"];
-
   useEffect(() => {
-    if (quantityRef.current) {
-      setValue("totalPrice", totalPrice);
-      setValue("quantity", quantityRef.current.value);
-      setValue("inventory.retailPrice", retailPrice);
-      setValue("inventory.item", option);
-
-      setValue("timestamp", Date.now());
-      setValue("createdAt", getFormattedDate())
-    }
+    setValue("totalPrice", totalPrice);
+    setValue("inventory.retailPrice", retailPrice);
+    setValue("inventory.item", option);
+    setValue("createdAt", Date.now())
   }, [totalPrice, setValue, setRetailPrice, retailPrice, option]);
-
-  function computeTotal(num1: number, num2: number) {
-    const total = num1 * num2;
-    setTotalPrice(total);
-  }
 
   return (
     <Create isLoading={formLoading} saveButtonProps={saveButtonProps}>
@@ -104,59 +86,33 @@ export const SalesCreate = () => {
             />
           )}
         />
-        <Box display="flex" gap={2}>
-          <TextField
-            margin="normal"
-            fullWidth
-            InputLabelProps={{ shrink: true }}
-            type="number"
-            label={"Retail Price per Kg"}
-            name="retailPrice"
-            value={retailPrice}
-            InputProps={{ readOnly: true }}
-          />
-          <TextField
-            margin="normal"
-            fullWidth
-            InputLabelProps={{ shrink: true }}
-            type="number"
-            label={"Quantity"}
-            name="quantity"
-            inputRef={quantityRef}
-            onChange={() => {
-              if (quantityRef.current) {
-                computeTotal(
-                  parseFloat(quantityRef.current.value),
-                  retailPrice
-                );
-              }
-            }}
-          />
-        </Box>
-        <Typography variant="body2">Quick buttons</Typography>
-        <Box display="flex" gap={0.5}>
-          {quickButtons.map((value) => (
-            <Button
-              color="secondary"
-              variant="contained"
-              onClick={() => {
-                if (quantityRef.current) {
-                  if (value === "1/4") quantityRef.current.value = "0.25";
-                  else if (value === "1/2") quantityRef.current.value = "0.50";
-                  else if (value === "3/4") quantityRef.current.value = "0.75";
-                  else quantityRef.current.value = value;
-
-                  computeTotal(
-                    parseFloat(quantityRef.current.value),
-                    retailPrice
-                  );
-                }
-              }}
-            >
-              {value}
-            </Button>
-          ))}
-        </Box>
+        <TextField
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="number"
+          label={"Retail Price per Kg"}
+          name="retailPrice"
+          value={retailPrice}
+          InputProps={{ readOnly: true }}
+        />
+        <TextField
+          {...register("quantity")}
+          margin="normal"
+          fullWidth
+          InputLabelProps={{ shrink: true }}
+          type="number"
+          label={"Quantity"}
+          name="quantity"
+          inputRef={quantityRef}
+          onChange={() => {
+            if (quantityRef.current) {
+              const total = parseInt(quantityRef.current.value) * retailPrice;
+              setTotalPrice(total);
+              console.log(total);
+            }
+          }}
+        />
         <Typography sx={{ marginTop: 5 }} align="right" variant="h4">
           Total: {totalPrice ? totalPrice : 0}
         </Typography>
