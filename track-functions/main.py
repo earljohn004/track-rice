@@ -9,7 +9,7 @@ import google.cloud.firestore
 
 app = initialize_app()
 
-FIELD_TIMESTAMP = "createdAt"
+FIELD_TIMESTAMP = "timestamp"
 FIELD_TOTAL_PRICE = "totalPrice"
 FIELD_TOTAL_SALES = "totalSales"
 COLLECTION_TRACKING = "tracking"
