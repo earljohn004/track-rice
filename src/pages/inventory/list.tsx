@@ -12,6 +12,9 @@ import React from "react";
 export const InventoryList = () => {
   const { dataGridProps } = useDataGrid({
     syncWithLocation: true,
+    pagination: {
+      mode: "off"
+    }
   });
 
   const columns = React.useMemo<GridColDef[]>(

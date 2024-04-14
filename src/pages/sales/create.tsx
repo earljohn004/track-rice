@@ -9,6 +9,7 @@ import { Create, useAutocomplete } from "@refinedev/mui";
 import { useForm } from "@refinedev/react-hook-form";
 import { useEffect, useRef, useState } from "react";
 import { Controller } from "react-hook-form";
+import { getFormattedDate } from "../../utils/dateUtils";
 
 export const SalesCreate = () => {
   const {
@@ -28,7 +29,6 @@ export const SalesCreate = () => {
   const [option, setOption] = useState<string>("");
 
   const quickButtons = ["1/4", "1/2", "3/4", "1", "5", "10"];
-  const [date, setDate] = useState(null);
 
   useEffect(() => {
     if (quantityRef.current) {
@@ -36,7 +36,9 @@ export const SalesCreate = () => {
       setValue("quantity", quantityRef.current.value);
       setValue("inventory.retailPrice", retailPrice);
       setValue("inventory.item", option);
-      setValue("createdAt", Date.now());
+
+      setValue("timestamp", Date.now());
+      setValue("createdAt", getFormattedDate())
     }
   }, [totalPrice, setValue, setRetailPrice, retailPrice, option]);
 

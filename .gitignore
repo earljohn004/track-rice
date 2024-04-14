@@ -38,3 +38,4 @@ track-functions/__pycache__/
 
 # Firebase functions
 track-functions/venv
+track-functions/__pycache__/main.cpython-311.pyc
