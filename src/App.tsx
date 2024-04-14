@@ -29,6 +29,7 @@ import {
   InventoryShow,
 } from "./pages/inventory";
 import { SalesCreate, SalesList } from "./pages/sales";
+import { TrackingList } from "./pages/tracking";
 
 function App() {
   return (
@@ -50,6 +51,13 @@ function App() {
                     create: "/sales/create",
                     edit: "/sales/edit/:id",
                     show: "/sales/show/:id",
+                  },
+                  {
+                    name: "tracking",
+                    list: "/tracking",
+                    meta: {
+                      label: "Tracking"
+                    }
                   },
                   {
                     name: "inventory",
@@ -92,6 +100,9 @@ function App() {
                     <Route path="/sales">
                       <Route index element={<SalesList />} />
                       <Route path="create" element={<SalesCreate />} />
+                    </Route>
+                    <Route path="/tracking">
+                      <Route index element={<TrackingList />} />
                     </Route>
                     <Route path="*" element={<ErrorComponent />} />
                   </Route>
