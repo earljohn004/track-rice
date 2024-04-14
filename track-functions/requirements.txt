@@ -1,0 +1,4 @@
+# Working version is 0.1.2
+# Latest upgrade to 0.3.0 has errors
+firebase_functions==0.1.2
+requests
