@@ -51,4 +51,4 @@ def addtotalsales(
     if current_value is not None:
         total_sales = int(current_value) + int(totalcost)
 
-    document_reference.set({"timestamp": timestamp, FIELD_TOTAL_SALES: total_sales})
+    document_reference.set({FIELD_TOTAL_SALES: total_sales})
