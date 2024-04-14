@@ -27,15 +27,13 @@ export const InventoryCreate = () => {
       markupPriceRef.current &&
       sackContentsRef.current
     ) {
-      console.log("EARL_DEBUG: changing values");
 
       const retailPriceInSack =
         parseInt(wholesalePriceRef.current.value) +
         parseInt(markupPriceRef.current.value);
 
       const retailPriceInKg =
-        parseInt(wholesalePriceRef.current.value) /
-        parseInt(sackContentsRef.current.value);
+        retailPriceInSack / parseInt(sackContentsRef.current.value);
 
       setRetailPriceSack(retailPriceInSack);
       setRetailPriceKg(parseInt(retailPriceInKg.toFixed(1)));
