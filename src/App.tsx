@@ -56,8 +56,8 @@ function App() {
                     name: "tracking",
                     list: "/tracking",
                     meta: {
-                      label: "Tracking"
-                    }
+                      label: "Tracking",
+                    },
                   },
                   {
                     name: "inventory",
@@ -89,7 +89,7 @@ function App() {
                   >
                     <Route
                       index
-                      element={<NavigateToResource resource="inventory" />}
+                      element={<NavigateToResource resource="sales" />}
                     />
                     <Route path="/inventory">
                       <Route index element={<InventoryList />} />
