@@ -1,9 +1,9 @@
-import { initializeFirebase } from "refine-firebase";
 import {
   FirebaseAuth,
   FirebaseDatabase,
   FirestoreDatabase,
-} from "refine-firebase";
+  initializeFirebase,
+} from "@armable/refine-firebase";
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_APIKEY,
