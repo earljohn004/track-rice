@@ -10,3 +10,8 @@ export const getFormattedDate = () => {
 
   return formattedDate;
 };
+
+export const getFormattedTime =(timestamp: number) =>{
+  const date = new Date(timestamp);
+  return date.toLocaleTimeString("en-US")
+}

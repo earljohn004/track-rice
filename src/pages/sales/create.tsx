@@ -10,6 +10,12 @@ import { useForm } from "@refinedev/react-hook-form";
 import { useEffect, useRef, useState } from "react";
 import { Controller } from "react-hook-form";
 import { getFormattedDate } from "../../utils/dateUtils";
+import { useGetIdentity } from "@refinedev/core";
+
+interface IIdentity {
+  email: string;
+  uid: string;
+}
 
 export const SalesCreate = () => {
   const {
@@ -29,6 +35,7 @@ export const SalesCreate = () => {
   const [option, setOption] = useState<string>("");
 
   const quickButtons = ["1/4", "1/2", "3/4", "1", "5", "10"];
+  const { data: identity } = useGetIdentity<IIdentity>();
 
   useEffect(() => {
     if (quantityRef.current) {
@@ -38,9 +45,10 @@ export const SalesCreate = () => {
       setValue("inventory.item", option);
 
       setValue("timestamp", Date.now());
-      setValue("createdAt", getFormattedDate())
+      setValue("createdAt", getFormattedDate());
+      setValue("addedBy", identity?.email)
     }
-  }, [totalPrice, setValue, setRetailPrice, retailPrice, option]);
+  }, [totalPrice, setValue, setRetailPrice, retailPrice, option, identity]);
 
   function computeTotal(num1: number, num2: number) {
     const total = num1 * num2;

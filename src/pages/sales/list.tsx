@@ -1,7 +1,7 @@
-import { DataGrid, GridColDef } from "@mui/x-data-grid";
+import { DataGrid, GridColDef, GridRenderCellParams } from "@mui/x-data-grid";
 import { List, useDataGrid } from "@refinedev/mui";
 import { useEffect, useMemo, useState } from "react";
-import { getFormattedDate } from "../../utils/dateUtils";
+import { getFormattedDate, getFormattedTime } from "../../utils/dateUtils";
 import { Typography } from "@mui/material";
 
 export const SalesList = () => {
@@ -37,7 +37,6 @@ export const SalesList = () => {
     () => [
       {
         field: "inventory.item",
-        flex: 1,
         headerName: "Item",
         valueGetter: ({ row }) => row.inventory.item,
         minWidth: 120,
@@ -46,20 +45,31 @@ export const SalesList = () => {
         field: "quantity",
         headerName: "Qty",
         type: "number",
-        minWidth: 120,
+        minWidth: 100,
       },
       {
         field: "totalPrice",
-        flex: 1,
         headerName: "Total Price",
         type: "number",
-        minWidth: 140,
+        minWidth: 120,
+      },
+      {
+        field: "addedBy",
+        headerName: "Added By",
+        minWidth: 130,
       },
       {
         field: "createdAt",
-        flex: 1,
         headerName: "Created",
-        minWidth: 250,
+        minWidth: 120,
+      },
+      {
+        field: "timestamp",
+        headerName: "Time",
+        minWidth: 100,
+        renderCell: function render({ value }) {
+          return getFormattedTime(value);
+        },
       },
     ],
     []

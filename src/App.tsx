@@ -43,7 +43,7 @@ function App() {
               <Refine
                 dataProvider={firestoreDatabase.getDataProvider()}
                 routerProvider={routerBindings}
-                legacyAuthProvider={firebaseAuth.getAuthProvider()}
+                authProvider={firebaseAuth.getAuthProvider()}
                 resources={[
                   {
                     name: "sales",
