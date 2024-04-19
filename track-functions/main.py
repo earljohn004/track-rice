@@ -29,7 +29,6 @@ def addtotalsales(
         totalcost = event.data.get(FIELD_TOTAL_PRICE)
         document_id = event.data.get(FIELD_CREATED)
     except KeyError:
-        logger.error("Timestamp and Total price not found")
         return
 
     firestore_client: google.cloud.firestore.Client = firestore.client()
