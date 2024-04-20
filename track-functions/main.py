@@ -1,5 +1,5 @@
 # The Cloud Functions for Firebase SDK to create Cloud Functions and set up triggers.
-from firebase_functions import firestore_fn
+from firebase_functions import firestore_fn, logger
 
 # The Firebase Admin SDK to access Cloud Firestore.
 from firebase_admin import initialize_app, firestore
@@ -38,7 +38,7 @@ def addtotalsales(
     )
 
     current_value = document_reference.get().get(FIELD_TOTAL_SALES)
-    total_sales = int(totalcost)
+    total_sales = float(totalcost)
 
     if current_value is not None:
         total_sales = int(current_value) + int(totalcost)
