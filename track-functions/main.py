@@ -41,6 +41,6 @@ def addtotalsales(
     total_sales = float(totalcost)
 
     if current_value is not None:
-        total_sales = int(current_value) + int(totalcost)
+        total_sales = float(current_value) + float(totalcost)
 
     document_reference.set({FIELD_TOTAL_SALES: total_sales})
